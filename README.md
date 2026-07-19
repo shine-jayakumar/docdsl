@@ -1,8 +1,8 @@
-# docdsl
+# DocDSL
 
 A declarative DSL for extracting structured information from OCR output, PDFs, reports, and other semi-structured documents.
 
-Instead of writing large, difficult-to-maintain regular expressions, **docdsl** lets you describe **what** to extract using a simple, readable language while keeping extraction rules separate from your application code.
+Instead of writing large, difficult-to-maintain regular expressions, **DocDSL** lets you describe **what** to extract using a simple, readable language while keeping extraction rules separate from your application code.
 
 ---
 
@@ -140,7 +140,7 @@ The reference includes:
 
 Contributions, bug reports and feature requests are welcome.
 
-If you discover a bug or have an idea for improving **docdsl**, please open an issue or submit a pull request.
+If you discover a bug or have an idea for improving **DocDSL**, please open an issue or submit a pull request.
 
 ---
 
