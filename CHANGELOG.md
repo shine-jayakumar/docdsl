@@ -19,7 +19,10 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Fixed handling of unterminated DSL commands.
 - Fixed parser behaviour for invalid command sequences.
+- Improved unterminated statement error reporting to correctly identify the 
+  last token when bracket characters (`[` and `]`) are present.
 
 ### Notes
 - Initial experimental release.
 - DSL syntax and parser APIs may change in future releases.
+

@@ -4,7 +4,7 @@ Project: Docdsl
 File Created: Sun 19 Jul 2026 12:49:39 (Shine Jayakumar)
 Author: Shine Jayakumar (shinejayakumar@yahoo.com)
 -----
-Last Modified: Sun 19 Jul 2026 12:49:39 (Shine Jayakumar)
+Last Modified: Sun 19 Jul 2026 18:59:47 (Shine Jayakumar)
 Modified By: Shine Jayakumar (shinejayakumar@yahoo.com)
 -----
 Copyright (c) 2026 Shine Jayakumar
@@ -116,7 +116,7 @@ class DSLSyntaxError(DocDSLError):
                 # SKIP UNTIL END *SKIP UNTIL NEWLINE;
                 # targetting space between END and SKIP
                 unterm_part = lines[row][:col]
-                last_token = re.search(r"[A-Z]+\s*$", unterm_part)
+                last_token = re.search(r"[A-Z\]\[]+\s*$", unterm_part)
                 col = last_token.span()[1] - 1
                 return row, col
 
