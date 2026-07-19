@@ -3,13 +3,8 @@
 ![License](https://img.shields.io/static/v1?label=license&message=MIT&color=green)
 ![Open Source](https://img.shields.io/static/v1?label=OpenSource&message=Yes&color=brightgreen)
 ![Version](https://img.shields.io/static/v1?label=version&message=v.0.0.1&color=blue)
-![Issues](https://img.shields.io/github/issues/shine-jayakumar/docdsl)
-![ClosedIssues](https://img.shields.io/github/issues-closed-raw/shine-jayakumar/docdsl)
-![Contributors](https://img.shields.io/github/contributors/shine-jayakumar/docdsl)
-![LastCommit](https://img.shields.io/github/last-commit/shine-jayakumar/docdsl)
-![TotalCommits](https://badgen.net/github/commits/shine-jayakumar/docdsl)
 ![Status](https://img.shields.io/badge/status-alpha-yellow.svg)
-![Downloads](https://img.shields.io/pypi/dm/docdsl)
+
 
 A declarative DSL for extracting structured information from OCR output, PDFs, reports, and other semi-structured documents.
 
