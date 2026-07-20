@@ -75,7 +75,8 @@ print(pattern)
 
 # Documentation
 
-For the complete language reference, see **DSL_REFERENCE.md**.
+Complete language documentation is available in the
+[DocDSL Documentation](https://github.com/shine-jayakumar/docdsl/blob/master/Documentation.md).
 
 The reference includes:
 
@@ -85,7 +86,6 @@ The reference includes:
 - Conditional statements
 - Examples
 - Best practices
-- Exception reference
 
 ---
 
