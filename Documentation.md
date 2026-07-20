@@ -278,7 +278,7 @@ This makes extraction rules easy to read and maintain.
 
 ---
 
-# Command Overview
+# Commands
 
 The language currently provides the following commands.
 
@@ -287,6 +287,9 @@ The language currently provides the following commands.
 | FIND | Locate a string |
 | SKIP | Advance through the document |
 | CAPTURE | Capture text into an entity |
+| CAPTURE N LINES | Capture a fixed number of lines |
+| CAPTURE LINES UNTIL | Capture lines until a delimiter is found |
+| CAPTURE BETWEEN | Capture text between two delimiters |
 | IF | Conditional extraction |
 
 The following sections describe every command in detail.
