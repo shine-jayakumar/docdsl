@@ -6,20 +6,22 @@ This document describes the complete syntax of the **DocDSL** language.
 
 # Table of Contents
 
-- Introduction
-- Language Overview
-- Entities
+- [Introduction](#Introduction)
+- [Language Overview](#Language-Overview)
+- [Entities](#Entities)
 - Translator
-- Commands
-    - FIND
-    - SKIP
-    - CAPTURE
-    - IF
-- Built-in Tokens
-- Error Handling
-- Best Practices
-- Examples
-
+- [Commands](#Commands)
+    - [FIND](#FIND)
+    - [SKIP](#SKIP)
+    - [CAPTURE](#CAPTURE)
+    - [CAPTURE n LINES](#CAPTURE-n-LINES)
+    - [CAPTURE LINES](#CAPTURE-LINES)
+    - [CAPTURE BETWEEN](#CAPTURE-BETWEEN)
+    - [IF](#IF)
+- [Built-in Tokens](#Built-in-Tokens)
+- [Error Handling](#Error-Handling)
+- [Best Practices](#Best-Practices)
+- [Examples](#Examples)
 ---
 
 # Introduction
