@@ -21,16 +21,12 @@ pip install docdsl
 ```
 
 ---
-
 # Quick Start
-
-## 1. Define your entities
-
-Entities are reusable regular expressions that can be referenced throughout your DSL.
 
 ```python
 from docdsl import DSLTranslator, Entity
 
+# Define reusable entities
 NAME = Entity(
     name="NAME",
     pattern=r"[A-Za-z ,.'-]+"
@@ -40,37 +36,27 @@ POSTCODE = Entity(
     name="POSTCODE",
     pattern=r"[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}"
 )
-```
 
-## 2. Create a translator
-
-```python
+# Create the translator
 translator = DSLTranslator(
     entities=[
         NAME,
         POSTCODE,
     ]
 )
-```
 
-## 3. Write your extraction rules
-
-```python
+# Describe what to extract
 dsl = """
 FIND "Name:";
 SKIP UNTIL NEWLINE;
 CAPTURE TARGET [@NAME];
 """
-```
 
-## 4. Generate the regular expression
-
-```python
+# Generate the regular expression
 pattern = translator.translate(dsl)
+
+print(pattern)
 ```
-
-Your DSL is translated into a regular expression that can be used as part of your document extraction pipeline.
-
 ---
 
 # Features
@@ -84,41 +70,6 @@ Your DSL is translated into a regular expression that can be used as part of you
 - Built-in helper tokens
 - Friendly syntax and validation errors
 - Exact error locations with line and column information
-
----
-
-# Entities
-
-Entities represent reusable regular expressions.
-
-```python
-TITLE = Entity(
-    name="TITLE",
-    pattern=r"(?:Mr|Mrs|Ms|Miss|Dr)\.?"
-)
-```
-
-Supply your entities when creating the translator.
-
-```python
-translator = DSLTranslator(
-    entities=[
-        TITLE,
-        NAME,
-        POSTCODE,
-    ]
-)
-```
-
-Inside the DSL, entities are referenced using the `@` prefix.
-
-```text
-@TITLE
-@NAME
-@POSTCODE
-```
-
-If the DSL references an entity that was not supplied to `DSLTranslator`, an `UndefinedEntity` exception is raised.
 
 ---
 
