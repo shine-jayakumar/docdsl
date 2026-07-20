@@ -19,7 +19,6 @@ This document describes the complete syntax of the **DocDSL** language.
     - [CAPTURE BETWEEN](#CAPTURE-BETWEEN)
     - [IF](#IF)
 - [Built-in Tokens](#Built-in-Tokens)
-- [Error Handling](#Error-Handling)
 - [Best Practices](#Best-Practices)
 - [Examples](#Examples)
 ---
