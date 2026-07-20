@@ -9,7 +9,7 @@ This document describes the complete syntax of the **DocDSL** language.
 - [Introduction](#Introduction)
 - [Language Overview](#Language-Overview)
 - [Entities](#Entities)
-- Translator
+- [Translator](#Translator)
 - [Commands](#Commands)
     - [FIND](#FIND)
     - [SKIP](#SKIP)
