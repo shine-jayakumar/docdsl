@@ -18,6 +18,7 @@ This document describes the complete syntax of the **DocDSL** language.
     - [CAPTURE LINES](#CAPTURE-LINES)
     - [CAPTURE BETWEEN](#CAPTURE-BETWEEN)
     - [IF](#IF)
+- [Built-in Entities](#Built-in-Entities)
 - [Built-in Tokens](#Built-in-Tokens)
 - [Best Practices](#Best-Practices)
 - [Examples](#Examples)
@@ -226,12 +227,34 @@ Ln 1: CAPTURE TARGET [@FULL_NAME];
 
 # Translator
 
-Create a translator by supplying every entity used within the DSL.
+Create a translator by creating an instance of DSLTranslator
 
 ```python
-from docdsl import DSLTranslator, Entity
+from docdsl import DSLTranslator
 
-NAME = Entity(
+
+translator = DSLTranslator()
+
+```
+
+Translate a DSL.
+
+```python
+pattern = translator.translate(dsl)
+```
+
+The returned value is a regular expression.
+
+
+## Using Custom Entities
+
+`DSLTranslator` automatically loads all built-in entities.
+
+Additional entities may be supplied through the `entities` parameter.
+
+```python
+
+EMPLOYEE_NAME = Entity(
     name="NAME",
     pattern=r"[A-Za-z ]+"
 )
@@ -243,19 +266,15 @@ POSTCODE = Entity(
 
 translator = DSLTranslator(
     entities=[
-        NAME,
-        POSTCODE,
+        EMPLOYEE_NAME,
+        POSTCODE
     ]
 )
+
 ```
 
-Translate a DSL.
-
-```python
-pattern = translator.translate(dsl)
-```
-
-The returned value is a regular expression.
+If a custom entity has the same name as a built-in entity, the custom entity
+overrides the built-in definition.
 
 ---
 
@@ -1013,6 +1032,48 @@ IF THEN "Name:"
 ```text
 ENDIF
 ```
+
+# Built-in Entities
+
+DocDSL includes a growing collection of built-in entities that can be used
+directly in your DSL scripts.
+
+These entities are loaded automatically by `DSLTranslator`; there is no need
+to define or register them yourself.
+
+For example, the following DSL works without creating a custom `NAME` entity:
+
+```dsl
+CAPTURE TARGET [@NAME];
+```
+
+If a custom entity is supplied with the same name as a built-in entity, the
+custom definition takes precedence.
+
+Although built-in entities are loaded automatically, they can also be imported
+directly if you wish to inspect or reuse their regular expressions.
+
+```python
+from docdsl.entities.generic import NAME, EMAIL, PHONE
+```
+
+Examples of built-in entities include:
+
+- `NAME`
+- `EMAIL`
+- `PHONE`
+
+
+Use `builtin_entities()` to view the complete list available in your installed version of DocDSL.
+
+```python
+from docdsl.entities import builtin_entities
+
+for entity_name, entity in builtin_entities().items():
+    print(f"{entity_name}: {entity}")
+
+```
+---
 
 # Built-in Tokens
 

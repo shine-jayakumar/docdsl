@@ -14,6 +14,6 @@ Licensed under the MIT License.
 See the LICENSE file in the project root for the full license text.
 """
 
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 
 from .translator import DSLTranslator, Entity

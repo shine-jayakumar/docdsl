@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## [0.0.3] - 2026-07-21
+
+### Added
+- Added a library of built-in generic entities that are loaded automatically by `DSLTranslator`.
+- Added support for using built-in entities without explicitly registering them.
+- Added `builtin_entities()` helper to inspect the built-in entity library.
+
+### Changed
+- `DSLTranslator` now accepts optional custom entities.
+- Improved the Quick Start guide to demonstrate automatic built-in entity support.
+- Expanded the documentation with a new **Built-in Entities** section and examples.
+
+### Fixed
+- Corrected line numbering in `UndefinedEntity` error reporting.
+- Removed unreachable code from `DSLSyntaxError`.
+
+
 ## [0.0.2] - 2026-07-20
 
 ### Changed
