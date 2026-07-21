@@ -1,6 +1,6 @@
 # DocDSL
 
-![Version](https://img.shields.io/static/v1?label=version&message=v.0.0.2&color=blue)
+![Version](https://img.shields.io/static/v1?label=version&message=v.0.0.3&color=blue)
 ![License](https://img.shields.io/static/v1?label=license&message=MIT&color=green)
 ![Status](https://img.shields.io/badge/status-alpha-yellow.svg)
 ![Open Source](https://img.shields.io/static/v1?label=OpenSource&message=Yes&color=brightgreen)
@@ -24,39 +24,34 @@ pip install docdsl
 # Quick Start
 
 ```python
-from docdsl import DSLTranslator, Entity
+from docdsl import DSLTranslator
 
-# Define reusable entities
-NAME = Entity(
-    name="NAME",
-    pattern=r"[A-Za-z ,.'-]+"
-)
+translator = DSLTranslator()
 
-POSTCODE = Entity(
-    name="POSTCODE",
-    pattern=r"[A-Z]{1,2}\d[A-Z\d]?\s?\d[A-Z]{2}"
-)
-
-# Create the translator
-translator = DSLTranslator(
-    entities=[
-        NAME,
-        POSTCODE,
-    ]
-)
-
-# Describe what to extract
 dsl = """
-FIND "Name:";
+FIND "Patient:";
 SKIP UNTIL NEWLINE;
 CAPTURE TARGET [@NAME];
 """
 
-# Generate the regular expression
 pattern = translator.translate(dsl)
-
 print(pattern)
+
+with open("doc.txt", "r") as fh:
+    text = fh.read()
+    matches = pattern.finditer(text)
+    for matched in matches:
+        print(f"{matched=}")
+        matched_groups = matched.groupdict()
+        name = matched_groups.get("NAME", None)
+        print(f"Name: {name}")
+
 ```
+
+The `NAME` entity is part of DocDSL's built-in entity library and is available
+automatically. Custom entities can still be supplied when additional matching
+behaviour is required.
+
 ---
 
 # Features

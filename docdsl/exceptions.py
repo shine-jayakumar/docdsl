@@ -53,7 +53,7 @@ class UndefinedEntity(Exception):
         lines = self._dsl.split("\n")
         entity_pattern = r"@([A-Z\d_]+)"
         underlined_lines = []
-        for lineno, line in enumerate(lines):
+        for lineno, line in enumerate(lines, start=1):
             spans = [
                 matched.span() for matched 
                 in re.finditer(entity_pattern, line)
@@ -137,19 +137,6 @@ class DSLSyntaxError(DocDSLError):
         if not expected_semicolon:
             return False
         return True
-
-        lines = self._dsl.split("\n")
-        erow, ecol = self._errpos
-        if ecol != 1:
-            return lines[erow - 1]
-        failed_part = self._errcontext.split("*")[0]
-        row = erow - 1
-        for i in range(row, -1, -1):
-            if not lines[i] or lines[i].isspace():
-                continue
-            if lines[i].endswith(failed_part):
-                return lines[i]
-        return lines[erow - 1]
 
     def _get_underlined(self) -> str:
         """Get underlined failed in error line"""

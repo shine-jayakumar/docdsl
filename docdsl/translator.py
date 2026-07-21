@@ -4,7 +4,7 @@ Project: Docdsl
 File Created: Wed 15 Jul 2026 08:12:11 (Shine Jayakumar)
 Author: Shine Jayakumar (shinejayakumar@yahoo.com)
 -----
-Last Modified: Wed 15 Jul 2026 08:12:11 (Shine Jayakumar)
+Last Modified: Tue 21 Jul 2026 13:31:10 (Shine Jayakumar)
 Modified By: Shine Jayakumar (shinejayakumar@yahoo.com)
 -----
 Copyright (c) 2026 Shine Jayakumar
@@ -17,28 +17,49 @@ See the LICENSE file in the project root for the full license text.
 
 import re
 from dataclasses import dataclass
+from typing import Optional
 from textx.exceptions import TextXSyntaxError
 from .parser import DSLMetaModel
+from .entities import Entity, builtin_entities
 from .exceptions import DSLSyntaxError, UndefinedEntity
-
-
-@dataclass
-class Entity:
-    name: str
-    pattern: str
-
 
 
 class DSLTranslator:
 
-    def __init__(self, entities: list[Entity]) -> None:
-        self._entity_map: dict[str, Entity] = {
-            f"__{entity.name}__": entity for entity in entities
-        }
+    def __init__(self, entities: Optional[list[Entity]] = None) -> None:
+        """
+        DSLTranslator class
+
+        The translator converts DocDSL scripts into equivalent regular
+        expressions.
+
+        Args:
+            entities (Optional[list[Entities]]):
+                Custom list of Entity objects
+        """
+        self._entity_map: dict[str, Entity] = {}
+        self._load_inbuilt_entities()
+        self._load_userdef_entities(entities)
+
         self._dsl: str = ""
         self._dsl_entities: list[str] = []
         self._template: str = ""
         self._pattern: re.Pattern = None
+
+    def _load_userdef_entities(self, entities: list[Entity]) -> None:
+        """Loads user-defined entities"""
+        if not entities:
+            return
+        self._entity_map.update({
+            f"__{entity.name}__": entity for entity in entities
+        })
+ 
+    def _load_inbuilt_entities(self) -> None:
+        """Loads inbuilt entities"""
+        self._entity_map = {
+            f"__{entity.name}__": entity
+            for entity in builtin_entities().values()
+        }
 
     def translate(self, dsl: str) -> re.Pattern:
         """Translates DSL to regex"""
